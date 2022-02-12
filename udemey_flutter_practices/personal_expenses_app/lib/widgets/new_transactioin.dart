@@ -24,6 +24,7 @@ class NewTransaction extends StatelessWidget {
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
+              keyboardType: TextInputType.number,
               controller: amountController,
               // onChanged: (val) => amountInput = val,
             ),
