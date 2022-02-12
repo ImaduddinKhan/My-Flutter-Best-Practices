@@ -15,7 +15,6 @@ class TransactionList extends StatelessWidget {
         itemCount: tx.length,
         itemBuilder: (context, index) {
           return Card(
-            color: Colors.amberAccent,
             child: Row(
               children: <Widget>[
                 Container(
@@ -24,7 +23,7 @@ class TransactionList extends StatelessWidget {
                     horizontal: 5,
                   ),
                   child: Text(
-                    '${tx[index].amount} \Rs',
+                    '${tx[index].amount.toStringAsFixed(2)} \Rs',
                     style: const TextStyle(
                       color: Colors.green,
                       fontSize: 20,
