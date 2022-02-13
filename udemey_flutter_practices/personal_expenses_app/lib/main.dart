@@ -13,7 +13,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        accentColor: Colors.blueGrey,
+        fontFamily: 'Quicksand',
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                  fontFamily: 'OpenSan',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -71,14 +85,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () => _startAddNewTransactionSheet(context),
           ),
         ],
-        title: const Text('Personal Expenses'),
+        title: Text(
+          'Personal Expenses',
+          style: Theme.of(context).appBarTheme.textTheme!.headline6,
+          // style: TextStyle(fontFamily: 'OpenSans'),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -106,7 +124,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 10,
-        backgroundColor: Colors.green,
         child: Icon(
           Icons.add,
         ),

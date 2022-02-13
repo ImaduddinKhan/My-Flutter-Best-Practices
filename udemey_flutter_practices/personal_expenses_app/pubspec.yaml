@@ -22,12 +22,20 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  
   flutter_lints: ^1.0.0
 
 
 flutter:
-
-  
   uses-material-design: true
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+          
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-Regular.ttf
+          weight: 700
