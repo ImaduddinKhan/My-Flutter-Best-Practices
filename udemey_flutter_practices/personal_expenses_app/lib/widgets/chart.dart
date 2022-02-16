@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:personal_expenses_app/widgets/chart_bar.dart';
 
 import '../models/transaction.dart';
 
@@ -8,7 +9,7 @@ class Chart extends StatelessWidget {
 
   const Chart({Key? key, required this.recentTrx}) : super(key: key);
 
-  List<Map<String, Object>> get transactionChartValues {
+  List<Map<String, dynamic>> get transactionChartValues {
     return List.generate(
       7,
       (index) {
@@ -24,29 +25,42 @@ class Chart extends StatelessWidget {
             totalSum = recentTrx[i].amount;
           }
         }
-
-        print(
-          DateFormat.E().format(weekday),
-        );
-        print(totalSum);
-
         return {
-          'day': DateFormat.E().format(weekday),
+          'day': DateFormat.E().format(weekday).substring(0, 1),
           'amount': totalSum,
         };
       },
     );
   }
 
+  double get iWillChangeThisLater {
+    return transactionChartValues.fold(
+      0.0,
+      (previousValue, nextItem) => previousValue + nextItem['amount'],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(transactionChartValues);
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: transactionChartValues
-            .map((e) => Text('${e['day']}: ${e['amount']}'))
+            .map(
+              (e) => Flexible(
+                flex: 2,
+                fit: FlexFit.loose,
+                child: ChartBar(
+                  e['day'],
+                  e['amount'],
+                  iWillChangeThisLater == 0.0
+                      ? 0.0
+                      : e['amount'] / iWillChangeThisLater,
+                ),
+              ),
+            )
             .toList(),
       ),
     );

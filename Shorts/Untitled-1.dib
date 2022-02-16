@@ -1,0 +1,536 @@
+#!csharp
+
+string a = "test";
+Console.WriteLine(a);
+
+#!csharp
+
+a = "also a test";
+Console.WriteLine(a);
+
+#!csharp
+
+Console.WriteLine("Hello " +  a);
+
+#!csharp
+
+string a = "test";
+string b = "test2"; 
+Console.WriteLine($"These '{a}' and '{b}' are the examples of string interpolation in csharp");
+
+#!csharp
+
+Console.WriteLine($"I am {a} and my length is {a.Length}");
+Console.WriteLine($"Also I am {b} and my length is {b.Length}");
+
+#!csharp
+
+string t = "    testing the world    ";
+Console.WriteLine($"[{t}]");
+trimmmedT = t.TrimStart();
+Console.WriteLine($"[{trimmmedT}]");
+trimmmedT = t.TrimEnd();
+Console.WriteLine($"[{trimmmedT}]");
+trimmmedT = t.Trim();
+Console.WriteLine($"[{trimmmedT}]");
+
+#!csharp
+
+t = t.Replace("testing" , "not testing");
+Console.WriteLine($"[{t}]");
+
+#!csharp
+
+string a = "Hello there";
+Console.WriteLine(a);
+a = a.Replace("there", "world");
+Console.WriteLine(a);
+
+#!csharp
+
+a = a.ToUpper();
+Console.WriteLine(a);
+a = a.ToLower();
+Console.WriteLine(a);
+
+#!csharp
+
+int i = 1; 
+double d = 2.2d;
+char c = 'C';
+c
+
+#!csharp
+
+var a = 10;
+var variable = 1f;
+var somelongvarname = "something";
+DisplayExtensions.Display(somelongvarname);
+variable.GetType();
+
+
+int valA = 10;
+double valB = valA;
+DisplayExtensions.Display(valB);
+
+int valC = 19;
+
+decimal valD = (long)valC;
+DisplayExtensions.Display(valD);
+
+double valE = 10.0;
+int valF = (int)valE;
+DisplayExtensions.Display(valF);
+
+#!csharp
+
+var apples = 100f;
+var oranges = 30f;
+
+DisplayExtensions.Display(apples + oranges);
+DisplayExtensions.Display(apples - oranges);
+DisplayExtensions.Display(apples * oranges);
+DisplayExtensions.Display(apples == oranges);
+DisplayExtensions.Display(apples <= oranges);
+DisplayExtensions.Display(apples >= oranges);
+DisplayExtensions.Display(apples != oranges);
+DisplayExtensions.Display(apples = apples + 10);
+DisplayExtensions.Display(oranges += 10);
+
+#!csharp
+
+var seconds = DateTime.Now.Second;
+DisplayExtensions.Display($"Current Seconds {seconds}");
+
+    if (seconds % 2 == 0 ){
+        DisplayExtensions.Display("Even Seconds");
+    }
+    else if (seconds % 3 == 0){
+        DisplayExtensions.Display("Seconds are multiple of 3");
+    }
+    else if (seconds % 5 == 0){
+        DisplayExtensions.Display("Seconds are multiple of 5");
+    }
+    else if (seconds % 2 == 1){
+        DisplayExtensions.Display("Odd Seconds");
+    }
+    else {
+        DisplayExtensions.Display("Neither even nor odd nor anything");
+    }
+
+#!csharp
+
+var seconds = DateTime.Now.Second;
+DisplayExtensions.Display($"Current Seconds {seconds}");
+
+bool multipleOfThree(){
+    DisplayExtensions.Display("How can multiple of three help you I am multiple of the three");
+    return seconds % 3 == 0;
+}
+
+    if (seconds % 2 == 0 ){
+        DisplayExtensions.Display("Even Seconds");
+    }
+    else if (multipleOfThree()){
+        DisplayExtensions.Display("Seconds are multiple of 3");
+    }
+    else if (seconds % 5 == 0){
+        DisplayExtensions.Display("Seconds are multiple of 5");
+    }
+    else if (seconds % 2 == 1){
+        DisplayExtensions.Display("Odd Seconds");
+    }
+    else {
+        DisplayExtensions.Display("Neither even nor odd nor anything");
+    }
+
+#!csharp
+
+var seconds = DateTime.Now.Second;
+DisplayExtensions.Display($"Current Seconds {seconds}");
+
+bool multipleOfThree(){
+    DisplayExtensions.Display("How can multiple of three help you I am multiple of the three");
+    return seconds % 3 == 0;
+}
+
+    if (seconds % 2 == 0 || multipleOfThree() ){
+        DisplayExtensions.Display("Even Seconds or multiple of three");
+    }
+
+#!csharp
+
+var days = DateTime.Now.DayOfWeek;
+// days = DayOfWeek.Wednesday;
+
+switch(days){
+    case DayOfWeek.Monday:
+        DisplayExtensions.Display("Monday");
+        break;
+    case DayOfWeek.Tuesday:
+        DisplayExtensions.Display("Tuesday");
+        break;
+    case DayOfWeek.Wednesday:
+        DisplayExtensions.Display("Wednesday");
+        break;
+    case DayOfWeek.Thursday:
+        DisplayExtensions.Display("Thursday");
+        break;
+    case DayOfWeek.Friday:
+        DisplayExtensions.Display("Friday");
+        break;
+    case DayOfWeek.Saturday:
+        DisplayExtensions.Display("Saturday");
+        break;
+    case DayOfWeek.Sunday:
+        DisplayExtensions.Display("Sunday");
+        break;
+    default:
+        DisplayExtensions.Display("Tuesday");
+        break;
+} 
+
+#!markdown
+
+## For loop ##
+
+#!csharp
+
+for(var counter = 0; counter <=100; counter++){
+    DisplayExtensions.Display($"Counting {counter}");
+}
+
+#!csharp
+
+for(var counter = 10; counter > 0; counter-= 1){
+    DisplayExtensions.Display($"Counting again: {counter}");
+}
+
+#!csharp
+
+for(var c = 0; c<=50; c++){
+    if (c % 2 == 1)
+    continue;
+    DisplayExtensions.Display($"Odd Numbers up to hundred: {c}");
+    
+}
+
+#!csharp
+
+for(var i = 0; i >= 0; i++){
+    DisplayExtensions.Display($"Stop when reach twelve {i}");
+    if (i > 11 ) break;
+}
+
+#!csharp
+
+var arrStr = new int[] {1,3,5,7};
+foreach(var num in arrStr){
+    DisplayExtensions.Display(num);
+}
+
+#!csharp
+
+for(var numcounter = 0; numcounter<arrStr.Length; numcounter++){
+    DisplayExtensions.Display(arrStr[numcounter]);
+}
+
+#!markdown
+
+## While and Do-While ##
+
+#!csharp
+
+var c = 6;
+while(c >= 6)
+{
+    if (c > 20 ) break;
+    DisplayExtensions.Display($"counter c: {c}");
+    c++;
+}
+
+#!csharp
+
+var c = 0;
+do{
+    DisplayExtensions.Display($"Countin c: {c}");
+    c++;
+}while(c <= 10);
+
+#!markdown
+
+## Different Types of Arrays ##
+
+#!csharp
+
+int[] arrexample = new int[3] {1, 2, 3};
+
+DisplayExtensions.Display(arrexample);
+
+#!csharp
+
+int[] arrexample = new int[3];
+arrexample[0] = 1;
+arrexample[1] = 2;
+arrexample[2] = 3;
+
+Console.WriteLine(arrexample[0]);
+Console.WriteLine(arrexample[1]);
+Console.WriteLine(arrexample[2]);
+
+#!csharp
+
+int[] arrayofintigers = new int[3] {1,2,3};
+string[] arrayofstring = new string[3] {"'a'", "'b'", "'c'"};
+bool[] arrayofbool = new bool[2] {true, false};
+double[] arrayofdouble = new double[3] {1.1, 2.2, 3.3};
+
+
+Console.WriteLine(arrayofdouble[1] + arrayofdouble[2]);
+
+DisplayExtensions.Display(arrayofbool);
+
+#!csharp
+
+//single dimension array decleratrion
+int[] singlearr;
+//two dimensional
+int[,] array2d;
+//three dimensional
+int[,,] array3d;
+//four ....
+int[,,,] array4d;
+//five ....
+int[,,,,] array5d;
+
+#!csharp
+
+string[] array = {"a", "b", "c", "d"};
+
+#!csharp
+
+int[,] multidimensionalarray = new int[3,3] {{2,3,1}, {5,1,3}, {6,2,3}};
+                                                  
+string[,] stringmultidimensional = new string[,] {{"a", "b", "c"}, 
+                                                  {"b", "c", "d"}, 
+                                                  {"c", "d", "e"}, 
+                                                  {"d", "e", "f"}};
+
+DisplayExtensions.Display(stringmultidimensional[0, 0]);
+DisplayExtensions.Display(stringmultidimensional[0, 1]);
+DisplayExtensions.Display(stringmultidimensional[0, 2]);
+
+DisplayExtensions.Display(stringmultidimensional[1, 0]);
+DisplayExtensions.Display(stringmultidimensional[1, 1]);
+DisplayExtensions.Display(stringmultidimensional[1, 2]);
+
+DisplayExtensions.Display(stringmultidimensional[2, 0]);
+DisplayExtensions.Display(stringmultidimensional[2, 1]);
+DisplayExtensions.Display(stringmultidimensional[2, 2]);
+
+DisplayExtensions.Display(stringmultidimensional[3, 0]);
+DisplayExtensions.Display(stringmultidimensional[3, 1]);
+DisplayExtensions.Display(stringmultidimensional[3, 2]);
+
+Console.WriteLine("--------------");
+
+foreach(var i in stringmultidimensional){
+    Console.WriteLine(i);
+}
+
+Console.WriteLine("--------------");
+
+if(stringmultidimensional.IsFixedSize){
+    Console.WriteLine("Fixed");
+    Console.WriteLine($"Size: {stringmultidimensional.Length}");
+    Console.WriteLine($"Rank: {stringmultidimensional.Rank}");
+}
+
+#!csharp
+
+string[][] jaggedarray = new string[3][] ;
+
+jaggedarray[0] = new string[2] {"a", "b"};
+jaggedarray[1] = new string[3] {"1", "22", "4"};
+jaggedarray[2] = new string[4] {"c", "d", "e", "f"};
+
+
+DisplayExtensions.Display(jaggedarray[0][1]);
+
+DisplayExtensions.Display(jaggedarray[1][2]);
+
+DisplayExtensions.Display(jaggedarray[2][3]);
+ 
+for(var i = 0; i< jaggedarray.Length; i++){
+    Console.WriteLine($"Array {i}: ");
+    for(var j = 0; j< jaggedarray[i].Length; j++){
+        Console.Write($"{jaggedarray[i][j]}, ");
+    }
+    Console.Write("");
+}
+if(multi.IsFixedSize){
+    Console.WriteLine("array is of fixed size");
+    Console.WriteLine($"Size : {jaggedarray.Length}");
+    Console.WriteLine($"Rank : {jaggedarray.Rank}");
+}
+
+#!csharp
+
+Console.WriteLine("=====================");
+
+int[][] multi = { new int[] { 1, 2, 3}, 
+                  new int[] { 3, 4, 5, 8, 9}, 
+                  new int[]{ 5, 6, 7, 10, 11, 12}};
+
+for ( var mul = 0; mul < multi.Length; mul++){
+    DisplayExtensions.Display($"Element({mul}): ");
+
+    for( var mul1 = 0; mul1 < multi[mul].Length; mul1++){
+        Console.Write($"{multi[mul][mul1]}, ");
+    }
+
+    DisplayExtensions.Display("");
+}
+
+Console.WriteLine("------------------------");
+
+if(multi.IsFixedSize){
+    Console.WriteLine("array is of fixed size");
+    Console.WriteLine($"Size : {multi.Length}");
+    Console.WriteLine($"Rank : {multi.Rank}");
+}
+
+#!csharp
+
+int[,,] array3d1 = new int[1,3,3] {
+                                    {
+                                        {1, 2, 3}, 
+                                        {2, 3, 4}, 
+                                        {3, 4, 5}
+                                    }
+                                 };
+int[,,] array3d3 = new int[2, 2, 3] {
+                                        {
+                                            {1, 3, 5}, 
+                                            {4, 1, 7}
+                                        },
+                                        {
+                                            {3, 3, 1}, 
+                                            {5, 1, 8}
+                                        },
+                                    };
+int[,,] array3d2 = new int[2, 2, 2] {{{1,2},{2,3}}, {{3,4},{5,6}}};
+
+Console.WriteLine($"{array3d3[1,1,2]}");
+
+foreach(var i in array3d2){
+    DisplayExtensions.Display(i);
+}
+
+#!csharp
+
+string[] strarray = new string[] {"a", "b", "c"};
+string[] strarray1 = new string[] {"c", "e", "f"};
+
+int[] intarray = new int[] {2, 4, 1, 5};
+int[] intarray1 = new int[] {7, 9, 6, 8, 12, 10, 11};
+
+
+var combine = strarray.Union(strarray1).ToArray();
+DisplayExtensions.Display(combine);
+
+var combine1 = intarray.Union(intarray1).ToArray();
+DisplayExtensions.Display(combine1);
+
+var combineI = strarray.Intersect(strarray1).ToArray();
+DisplayExtensions.Display(combineI);
+
+#!csharp
+
+Array.Sort(intarray1, 2,5);
+Array.ForEach<int>(intarray1, s => Console.WriteLine(s));
+
+Array.Reverse(intarray);
+Array.ForEach<int>(intarray, i => Console.WriteLine(i));
+
+#!csharp
+
+int[,] arr = new int[3,3] {{1,2,4}, 
+                           {4,5,2}, 
+                           {12,5,9}};
+
+int[,] fliped = fliparr(arr, 3);
+static int[,] fliparr (int[,] matrix, int n){
+    int[,] ret = new int[n,n];
+    for(int i = 0; i < n; ++i){
+        for(int j =0; j < n; ++j){
+            ret[i, j] = matrix[j,i];
+            Console.Write(ret[i, j]);
+        }
+    }
+    return ret;
+}
+
+#!csharp
+
+int n1, n2, res;
+Console.WriteLine("\nFirst number: ");
+n1 = int.Parse(Console.ReadLine());
+Console.WriteLine("\nSecond number: ");
+n2 = int.Parse(Console.ReadLine());
+Console.WriteLine($"Before: \n First Number: {n1} \n Second Number; {n2}");
+
+res = n1;
+n1 = n2; 
+n2 = res;
+
+Console.WriteLine($"\nAfter swap: \n First no: {n1} \n Second no: {n2}");
+
+#!csharp
+
+int [,] array = { { 1, 2, 3 },
+                  { 4, 5, 6 },
+                  { 7, 8, 9 } };
+   
+static var C = 3;
+static var R = 3; 
+reverseArray(array);
+
+static void reverseArray(int[,] array){
+    for(var i = 0; i < C; i++){
+        int start = 0;
+        int end = C-1; 
+
+        if (start < end){
+            int t = array[i, start];
+            array[i, start] = array[i, end];
+            array[i, end] = t; 
+
+            start++;
+            end--;
+        }
+    }
+    for (var i = 0; i < C; i++){
+        for(var j = 0; j < R; j++){
+            Console.Write(array[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+#!markdown
+
+## Sorting using LINQ ##
+
+#!csharp
+
+var sortarr = from elements in intarray1
+              orderby elements descending
+              select elements;
+
+Array.ForEach<int>(sortarr.ToArray<int>(), s => Console.WriteLine(s));
+
+#!csharp
+
+foreach(var i in jaggedarray[1])
+DisplayExtensions.Display(i);

@@ -6,7 +6,7 @@ class NewTransaction extends StatefulWidget {
   final Function addNewTx;
   NewTransaction({Key? key, required this.addNewTx}) : super(key: key);
 
-  @override
+  @override 
   State<NewTransaction> createState() => _NewTransactionState();
 }
 

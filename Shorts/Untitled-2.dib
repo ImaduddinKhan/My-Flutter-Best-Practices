@@ -1,0 +1,24 @@
+#!markdown
+
+## HTML ##
+
+#!html
+
+<b id = "t">BISMILLAH</b>
+
+#!markdown
+
+## JavaScript Notebook ##
+
+#!javascript
+
+let e = document.getElementById('t');
+e.style.color = 'magenta'
+
+#!javascript
+
+<script>
+for (let i = 0; i<5; ++i;){
+    console.log(i);
+}
+</script>
