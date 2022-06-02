@@ -1,211 +1,195 @@
-import 'dart:math';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/services.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+    );
+
+    return MaterialApp(
+      title: 'Introduction screen',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: OnBoardingPage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  final _totalDots = 5;
-  double _currentPosition = 0.0;
+class OnBoardingPage extends StatefulWidget {
+  @override
+  _OnBoardingPageState createState() => _OnBoardingPageState();
+}
 
-  double _validPosition(double position) {
-    if (position >= _totalDots) return 0;
-    if (position < 0) return _totalDots - 1.0;
-    return position;
-  }
+class _OnBoardingPageState extends State<OnBoardingPage> {
+  final introKey = GlobalKey<IntroductionScreenState>();
 
-  void _updatePosition(double position) {
-    setState(() => _currentPosition = _validPosition(position));
-  }
-
-  Widget _buildRow(List<Widget> widgets) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: widgets,
-      ),
+  void _onIntroEnd(context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => HomePage()),
     );
   }
 
-  String getPrettyCurrPosition() {
-    return (_currentPosition + 1.0).toStringAsPrecision(3);
+  Widget _buildFullscreenImage() {
+    return Image.asset(
+      'assets/1.png',
+      fit: BoxFit.cover,
+      height: double.infinity,
+      width: double.infinity,
+      alignment: Alignment.center,
+    );
+  }
+
+  Widget _buildImage(String assetName, [double width = 350]) {
+    return Image.asset('assets/$assetName', width: width);
   }
 
   @override
   Widget build(BuildContext context) {
-    final decorator = DotsDecorator(
-      activeColor: Colors.red,
-      size: Size.square(15.0),
-      activeSize: Size.square(35.0),
-      activeShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25.0),
-      ),
+    const bodyStyle = TextStyle(fontSize: 19.0);
+
+    const pageDecoration = PageDecoration(
+      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
+      bodyTextStyle: bodyStyle,
+      bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+      pageColor: Colors.white,
+      imagePadding: EdgeInsets.zero,
     );
 
-    const titleStyle = TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: 18.0,
-    );
-
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Dots indicator example'),
+    return Positioned(
+      height: 100,
+      width: 200,
+      child: IntroductionScreen(
+        key: introKey,
+        globalBackgroundColor: Colors.white,
+        globalHeader: Align(
+          alignment: Alignment.topRight,
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16, right: 16),
+              child: _buildImage('1.png', 100),
+            ),
+          ),
         ),
-        body: Center(
-          child: ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(16.0),
-            children: [
-              _buildRow([
-                Text(
-                  'Current position ${getPrettyCurrPosition()} / $_totalDots',
-                  style: titleStyle,
+        globalFooter: SizedBox(
+          width: double.infinity,
+          height: 60,
+          child: ElevatedButton(
+            child: const Text(
+              'Let\'s go right away!',
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            ),
+            onPressed: () => _onIntroEnd(context),
+          ),
+        ),
+        pages: [
+          PageViewModel(
+            title: "Fractional shares",
+            body:
+                "Instead of having to buy an entire share, invest any amount you want.",
+            image: _buildImage('2.png'),
+            decoration: pageDecoration,
+          ),
+          PageViewModel(
+            title: "Learn as you go",
+            body:
+                "Download the Stockpile app and master the market with our mini-lesson.",
+            image: _buildImage('3.png'),
+            decoration: pageDecoration,
+          ),
+          PageViewModel(
+            title: "Kids and teens",
+            body:
+                "Kids and teens can track their stocks 24/7 and place trades that you approve.",
+            image: _buildImage('4.png'),
+            decoration: pageDecoration,
+          ),
+          PageViewModel(
+            title: "Full Screen Page",
+            body:
+                "Pages can be full screen as well.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod lectus, non tempor felis. Nam rutrum rhoncus est ac venenatis.",
+            image: _buildFullscreenImage(),
+            decoration: pageDecoration.copyWith(
+              contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+              fullScreen: true,
+              bodyFlex: 2,
+              imageFlex: 3,
+            ),
+          ),
+          PageViewModel(
+            title: "Another title page",
+            body: "Another beautiful body text for this example onboarding",
+            image: _buildImage('1.png'),
+            footer: ElevatedButton(
+              onPressed: () {
+                introKey.currentState?.animateScroll(0);
+              },
+              child: const Text(
+                'FooButton',
+                style: TextStyle(color: Colors.white),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.lightBlue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-              ]),
-              _buildRow([
-                SizedBox(
-                  width: 300.0,
-                  child: Slider(
-                    value: _currentPosition,
-                    max: (_totalDots - 1).toDouble(),
-                    onChanged: _updatePosition,
-                  ),
-                ),
-              ]),
-              _buildRow([
-                FloatingActionButton(
-                  child: const Icon(Icons.remove),
-                  onPressed: () {
-                    _currentPosition = _currentPosition.ceilToDouble();
-                    _updatePosition(max(--_currentPosition, 0));
-                  },
-                ),
-                FloatingActionButton(
-                  child: const Icon(Icons.add),
-                  onPressed: () {
-                    _currentPosition = _currentPosition.floorToDouble();
-                    _updatePosition(min(
-                      ++_currentPosition,
-                      _totalDots.toDouble(),
-                    ));
-                  },
-                )
-              ]),
-              _buildRow([
-                Column(
-                  children: [
-                    const Text('Vertical', style: titleStyle),
-                    const SizedBox(height: 16.0),
-                    DotsIndicator(
-                      dotsCount: _totalDots,
-                      position: _currentPosition,
-                      axis: Axis.vertical,
-                      decorator: decorator,
-                      onTap: (pos) {
-                        setState(() => _currentPosition = pos);
-                      },
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    const Text('Vertical reversed', style: titleStyle),
-                    const SizedBox(height: 16.0),
-                    DotsIndicator(
-                      dotsCount: _totalDots,
-                      position: _currentPosition,
-                      axis: Axis.vertical,
-                      reversed: true,
-                      decorator: decorator,
-                    ),
-                  ],
-                ),
-              ]),
-              _buildRow([
-                const Text('Horizontal', style: titleStyle),
-              ]),
-              _buildRow([
-                const Text('Individual custom dot'),
-                DotsIndicator(
-                  dotsCount: _totalDots,
-                  position: _currentPosition,
-                  decorator: DotsDecorator(
-                    colors: [
-                      Colors.red,
-                      Colors.blue,
-                      Colors.green,
-                      Colors.yellow,
-                      Colors.cyan,
-                    ].reversed.toList(),
-                    activeColors: [
-                      Colors.red,
-                      Colors.blue,
-                      Colors.green,
-                      Colors.yellow,
-                      Colors.cyan,
-                    ],
-                    sizes: [
-                      Size.square(40.0),
-                      Size.square(35.0),
-                      Size.square(30.0),
-                      Size.square(25.0),
-                      Size.square(20.0),
-                    ],
-                    activeSizes: [
-                      Size.square(20.0),
-                      Size.square(25.0),
-                      Size.square(30.0),
-                      Size.square(35.0),
-                      Size.square(40.0),
-                    ],
-                    shapes: [
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0)),
-                    ],
-                    activeShapes: [
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0)),
-                    ],
-                  ),
-                ),
-              ]),
-              _buildRow([
-                const Text('Reversed'),
-                DotsIndicator(
-                  dotsCount: _totalDots,
-                  position: _currentPosition,
-                  reversed: true,
-                  decorator: decorator,
-                ),
-              ]),
-            ],
+              ),
+            ),
+            decoration: pageDecoration,
+          ),
+          PageViewModel(
+            title: "Title of last page - reversed",
+            bodyWidget: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text("Click on ", style: bodyStyle),
+                Icon(Icons.edit),
+                Text(" to edit a post", style: bodyStyle),
+              ],
+            ),
+            decoration: pageDecoration.copyWith(
+              bodyFlex: 2,
+              imageFlex: 4,
+              bodyAlignment: Alignment.bottomCenter,
+              imageAlignment: Alignment.topCenter,
+            ),
+            image: _buildImage('3.png'),
+            reverse: true,
+          ),
+        ],
+        onDone: () => _onIntroEnd(context),
+        //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
+        showSkipButton: false,
+        skipOrBackFlex: 0,
+        nextFlex: 0,
+        showBackButton: false,
+        showDoneButton: false,
+        showNextButton: false,
+        //rtl: true, // Display as right-to-left
+        dotsDecorator: const DotsDecorator(
+          size: Size(10.0, 10.0),
+          color: Color(0xFFBDBDBD),
+          activeSize: Size(22.0, 10.0),
+          activeShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(25.0)),
           ),
         ),
       ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Home')),
+      body: const Center(child: Text("This is the screen after Introduction")),
     );
   }
 }

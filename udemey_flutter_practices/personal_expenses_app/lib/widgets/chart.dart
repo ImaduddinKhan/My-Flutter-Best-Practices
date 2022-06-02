@@ -44,24 +44,27 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: transactionChartValues
-            .map(
-              (e) => Flexible(
-                flex: 2,
-                fit: FlexFit.loose,
-                child: ChartBar(
-                  e['day'],
-                  e['amount'],
-                  iWillChangeThisLater == 0.0
-                      ? 0.0
-                      : e['amount'] / iWillChangeThisLater,
+      margin: const EdgeInsets.all(15),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: transactionChartValues
+              .map(
+                (e) => Flexible(
+                  flex: 2,
+                  fit: FlexFit.loose,
+                  child: ChartBar(
+                    e['day'],
+                    e['amount'],
+                    iWillChangeThisLater == 0.0
+                        ? 0.0
+                        : e['amount'] / iWillChangeThisLater,
+                  ),
                 ),
-              ),
-            )
-            .toList(),
+              )
+              .toList(),
+        ),
       ),
     );
   }

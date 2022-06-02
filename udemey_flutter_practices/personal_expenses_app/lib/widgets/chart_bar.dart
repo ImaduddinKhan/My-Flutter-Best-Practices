@@ -5,17 +5,21 @@ class ChartBar extends StatelessWidget {
   final double amountSpending;
   final double percentageOfTotal;
 
-  ChartBar(this.label, this.amountSpending, this.percentageOfTotal);
+  const ChartBar(this.label, this.amountSpending, this.percentageOfTotal);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('${amountSpending.toStringAsFixed(0)}\Rs'),
-        SizedBox(
+        FittedBox(
+          child: Text(
+            '${amountSpending.toStringAsFixed(0)}\Rs',
+          ),
+        ),
+        const SizedBox(
           height: 4,
         ),
-        Container(
+        SizedBox(
           height: 60,
           width: 10,
           child: Stack(
@@ -39,7 +43,7 @@ class ChartBar extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 4,
         ),
         Text(label),

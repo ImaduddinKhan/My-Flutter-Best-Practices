@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1089223989263",
+    "project_id": "disttestpro",
+    "storage_bucket": "disttestpro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089223989263:android:240c26a2a41df2f310ab7a",
+        "android_client_info": {
+          "package_name": "com.example.poc_circular_timer_indicator_withdot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089223989263-4v3i8920mslrva74inmc5alsqsonfa71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBL3QDsfIO1beHgqzYV08QlVYtAWgJIfTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089223989263-4v3i8920mslrva74inmc5alsqsonfa71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).primaryColor,
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => _startAddNewTransactionSheet(context),
           ),
         ],
@@ -144,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 10,
-        child: Icon(
+        child: const Icon(
           Icons.add,
         ),
         onPressed: () => _startAddNewTransactionSheet(context),
